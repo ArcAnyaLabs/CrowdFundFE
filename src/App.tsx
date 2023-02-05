@@ -1,47 +1,35 @@
 import { ConnectWallet } from "@thirdweb-dev/react";
+import { useState } from "react";
 import "./styles/Home.css";
 
 export default function Home() {
+  const [project, setProject] = useState('');
+  const [description, setDescription] = useState('');
+  const [goal, setGoal] = useState(0);
+  const [deadline, setDeadline] = useState('');
+
+  const date = new Date();
+  console.log(date.toString());
   return (
     <div className="container">
       <main className="main">
         <h1 className="title">
-          Welcome to <a href="https://thirdweb.com/">thirdweb</a>!
+          Welcome to our small project :) 
         </h1>
 
-        <p className="description">
-          Get started by configuring your desired network in{" "}
-          <code className="code">src/index.tsx</code>, then modify the{" "}
-          <code className="code">src/App.tsx</code> file!
-        </p>
+        <form className="flex flex-col m-8 space-y-2">
+          <div>Enter your Project name</div>
+          <input value={project} onChange={(e) => setProject(e.target.value)}/>
+          <div>Tell us, what's your project about?</div>
+          <input value={description} onChange={(e) => setDescription(e.target.value)}/>
+          <div>Fundraising target:</div>
+          <input value={goal} onChange={(e) => setGoal(Number(e.target.value))} />
+          <div>Deadline</div>
+          <input value={deadline} onChange={(e) => setDeadline(e.target.value)} />
+        </form>
 
         <div className="connect">
           <ConnectWallet />
-        </div>
-
-        <div className="grid">
-          <a href="https://portal.thirdweb.com/" className="card">
-            <h2>Portal &rarr;</h2>
-            <p>
-              Guides, references and resources that will help you build with
-              thirdweb.
-            </p>
-          </a>
-
-          <a href="https://thirdweb.com/dashboard" className="card">
-            <h2>Dashboard &rarr;</h2>
-            <p>
-              Deploy, configure and manage your smart contracts from the
-              dashboard.
-            </p>
-          </a>
-
-          <a href="https://portal.thirdweb.com/templates" className="card">
-            <h2>Templates &rarr;</h2>
-            <p>
-              Discover and clone template projects showcasing thirdweb features.
-            </p>
-          </a>
         </div>
       </main>
     </div>
